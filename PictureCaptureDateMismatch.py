@@ -67,6 +67,10 @@ def main():
 
     # Traverse all files in the folder and subfolders
     for root, dirs, files in os.walk('.'):
+        if current_directory != root:
+            current_directory = root
+            print(f"Searching directory: {current_directory}")  # Display information about the current directory
+
         for file in files:
             if file.lower().endswith('.jpg'):
                 filename = os.path.join(root, file)
