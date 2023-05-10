@@ -51,7 +51,7 @@ The project includes the following files:
 
 ## License
 
-This project is licensed under the [GNU GPL3](LICENSE). Feel free to use, modify, and distribute the code according to the terms of the license.
+This project is licensed under the [GPL3](LICENSE). Feel free to use, modify, and distribute the code according to the terms of the license.
 
 ## Contributions
 
