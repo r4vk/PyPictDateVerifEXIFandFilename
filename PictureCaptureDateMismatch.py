@@ -30,7 +30,7 @@ def get_file_date(filename, mask, date_format):
         date_format (str): Expected date format.
 
     Returns:
-        str or None: Date from the file name in the format '%Y%m%d' or None if the date format is incorrect or the date is before 1970.
+        str or None: Date from the file name in the format '%Y%m%d' or None if the date format is incorrect or the date is before 1900.
     """
 
     try:
