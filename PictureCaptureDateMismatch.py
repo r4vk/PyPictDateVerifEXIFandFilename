@@ -1,6 +1,7 @@
 import os
 import subprocess
 import csv
+import datetime
 
 def get_exif_date(filename):
     """
@@ -29,15 +30,26 @@ def get_file_date(filename, mask, date_format):
         date_format (str): Expected date format.
 
     Returns:
-        str or None: Date from the file name in the format '%Y%m%d' or None if an error occurred.
+        str or None: Date from the file name in the format '%Y%m%d' or None if the date format is incorrect or the date is before 1970.
     """
 
     try:
         basename = os.path.basename(filename)
-        date_str = basename[mask[0]:mask[0]+mask[1]]  # Retrieve the portion of the file name according to the mask
-        return date_str.replace('_', '-').replace('-', '')  # Remove '_' and '-' characters
-    except ValueError:
+        date_str = basename[mask[0]:mask[0] + mask[1]]  # Retrieve the portion of the file name according to the mask
+        date_str = date_str.replace('_', '-').replace('-', '')  # Remove '_' and '-' characters
+
+        # Check if the date format is correct
+        parsed_date = datetime.datetime.strptime(date_str, date_format)
+        parsed_date_year = parsed_date.year
+
+        # Check if the date is after 1970
+        if parsed_date_year < 1900:
+            return None
+
+        return parsed_date.strftime('%Y%m%d')
+    except (ValueError, TypeError):
         return None
+
 
 def main():
     """
